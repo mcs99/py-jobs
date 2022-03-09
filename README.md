@@ -1,5 +1,5 @@
 # :office: py-jobs
-:blue_square: **py-jobs** is webscraper built on Python, scraping Indeed.com and applying additional search filters to reduce headaches for job hunters :blue_square:
+:blue_square: **py-jobs** is a Python webscraper which scrapes Indeed.com and applies additional search filters to reduce headaches for job hunters :blue_square:
 
 **Points of differentiatiation** compared to traditional search methods (e.g. LinkedIn, Indeed, etc.) include:  
 - Strict "experience level" filters matching multiple regex patterns
