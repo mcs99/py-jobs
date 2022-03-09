@@ -2,8 +2,8 @@
 :blue_square: **py-jobs** is webscraper built on Python, scraping Indeed.com and applying additional search filters to reduce headaches for job hunters :blue_square:
 
 **Points of differentiatiation** compared to traditional search methods (e.g. LinkedIn, Indeed, etc.) include:  
-- Strict "experience level" filters using multiple regex pattern matching
-- Quick export options include saving to local directory (as .csv) or as an email (.csv attachment) |***:small_orange_diamond: Email Export Upcoming***
+- Strict "experience level" filters matching multiple regex patterns
+- Quick export options including 1) save to local directory (as .csv) and 2) email export (as .csv attachment) |***:small_orange_diamond: Email Export Upcoming***
 - Built-in analyzer and recommender for similar job titles |***:small_orange_diamond: Upcoming***
 - Built-in analyzer and recommender for similar job locations (cities)  |***:small_orange_diamond: Upcoming***
 
