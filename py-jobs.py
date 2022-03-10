@@ -17,10 +17,10 @@ browser = Edge("msedgedriver.exe", options=options)  # Configure Edge driver
 
 class JobSearch:
     def __init__(self, location: str, title: str, time_type: str,
-                 df: pd.DataFrame = None, filter_df: pd.DataFrame = None):
+                 all_df: pd.DataFrame = None, filter_df: pd.DataFrame = None):
 
         self.filtered_df = filter_df
-        self.output_df = df
+        self.output_df = all_df
         self.input_location = location
         self.input_title = title
         self.input_type = time_type
