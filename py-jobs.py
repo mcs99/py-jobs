@@ -177,8 +177,8 @@ class JobSearch:
 if __name__ == '__main__':
     print('Process Starting.')
 
-    js = JobSearch(title='strategy consultant', location='boston ma', time_type='fulltime')
-    results = js.jobs(max_results=30)
+    js = JobSearch(title='software engineer', location='san francisco ca', time_type='fulltime')
+    results = js.jobs(max_results=200)
     filtered = results.filter(minimum_experience=1)
     results.export(dataset='a')
     filtered.export(dataset='f')
