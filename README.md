@@ -1,4 +1,4 @@
-# :office: py-jobs: Find relevant jobs you actually qualify for in one-click
+# :office: py-jobs: Find relevant jobs you actually qualify for in ***one click***
 :blue_square: **py-jobs** is a Python webscraper which scrapes Indeed.com and applies additional search filters to reduce headaches for job hunters :blue_square:
 
 **Points of differentiatiation** compared to traditional search methods (e.g. LinkedIn, Indeed, etc.) include:  
