@@ -1,3 +1,5 @@
+import time
+import random
 import re
 
 from bs4 import BeautifulSoup
@@ -5,8 +7,6 @@ from msedge.selenium_tools import EdgeOptions
 from msedge.selenium_tools import Edge
 
 import pandas as pd
-import time
-import random
 
 options = EdgeOptions()
 options.use_chromium = True
@@ -28,12 +28,10 @@ class JobSearch:
         if time_type not in ['fulltime', 'parttime', 'temporary']:
             raise ValueError('Please enter one from the list: [fulltime, parttime, temporary]')
 
-    def jobs(self):
+    def jobs(self, max_results: int = 999999):
 
         start_url = 'https://www.indeed.com/jobs?q={}&l={}&jt={}&start=0' \
             .format(self.input_title.replace(' ', r'%20'), self.input_location.replace(' ', r'%20'), self.input_type)
-
-        print(start_url)
 
         time.sleep(random.randint(5, 8))
 
@@ -43,8 +41,13 @@ class JobSearch:
         pg_count = soup.find('div', {'id': 'searchCountPages'}).getText().strip()
         total_results = re.search(r'of (.*) jobs', pg_count).group(1)
         total_results = total_results.replace(',', '')
-        pg_loops = range(0, 3)#int(int(total_results) / 10))
 
+        if max_results < int(total_results):
+            pg_loops = range(0, int(max_results / 10))
+        else:
+            pg_loops = range(0, int(int(total_results) / 10))
+
+        print('Search Term:', self.input_title.upper(), self.input_location.upper(), self.input_type.upper())
         print('Total Results:', total_results)
         print('Loops:', pg_loops)
         print('Page | Results Scraped')
@@ -158,11 +161,10 @@ class JobSearch:
 
 
 if __name__ == '__main__':
-
     print('Process Starting.')
-    
+
     js = JobSearch(title='strategy consultant', location='boston ma', time_type='fulltime')
-    results = js.jobs()
+    results = js.jobs(max_results=30)
     filtered = results.filter(minimum_experience=1)
     results.export(dataset='a')
     filtered.export(dataset='f')
