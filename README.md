@@ -8,4 +8,4 @@
 - Built-in analyzer and recommender for similar job locations (cities)  |***:small_orange_diamond: Upcoming***
 - Skills analyzer offering a compatability score for filtered jobs |***:small_orange_diamond: Upcoming***
 
-##### NOTE: This is an advanced search built to target certain phrases in job descriptions. In almost all cases, the number of jobs returned will be less than what you would find on Indeed.com (once filtered). This means this bot could easily miss a job that you qualify for because it failed to return a keyword match. Thus, it is recommended that you do your own due diligence and apply other tools and methods in addition to this one.
+##### NOTE: This is an advanced search built to target certain phrases in job descriptions. In almost all cases, the number of jobs returned will be less than what you would find on Indeed.com (once filtered). This means this bot could easily miss a job that you qualify for because it failed to return a keyword match. Thus, it is recommended that you do your own due diligence and apply other tools and methods to best support your goals.
