@@ -140,7 +140,6 @@ class JobSearch:
 
         # Initialize regexes to search through in text and join regex patterns into one search critieria
         regexes = [
-            # r"{}(\d)?(\+)?\s+year(s)\s+?(([^\s]+)\s+){{0,9}}experience" resolve issue of 10+ experience when 1 is min
 
             r"{}(\+)?\s+year(s)\s+?(([^\s]+)\s+){{0,9}}experience".format(str(minimum_experience)),
             r"{}(\+)?\s+year(s)\s+.Required.".format(str(minimum_experience)),
