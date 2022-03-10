@@ -42,9 +42,11 @@ class JobSearch:
 
         pg_count = soup.find('div', {'id': 'searchCountPages'}).getText().strip()
         total_results = re.search(r'of (.*) jobs', pg_count).group(1)
-        pg_loops = range(0, int(int(total_results) / 10) - 52)
+        total_results = total_results.replace(',', '')
+        pg_loops = range(0, 3)#int(int(total_results) / 10))
 
-        print('Pages:', pg_loops)
+        print('Total Results:', total_results)
+        print('Loops:', pg_loops)
         print('Page | Results Scraped')
         print('----------------------')
 
@@ -159,7 +161,7 @@ if __name__ == '__main__':
 
     print('Process Starting.')
     
-    js = JobSearch(title='brand analyst', location='San Francisco CA', time_type='fulltime')
+    js = JobSearch(title='strategy consultant', location='boston ma', time_type='fulltime')
     results = js.jobs()
     filtered = results.filter(minimum_experience=1)
     results.export(dataset='a')
