@@ -170,7 +170,7 @@ class JobSearch:
             self.output_df.to_csv('all-job-results\\all-jobs.csv')
 
         else:
-            raise ValueError('Please enter one from the list: [F, A]')
+            raise ValueError('Please enter one from the list: [Filtered, All]')
 
     # def similar(self, basis: str):  # filter jobs, remove titles (director, mgr.) and return keywords in titles
     #     if basis == 't':
