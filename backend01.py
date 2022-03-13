@@ -45,10 +45,12 @@ class JobSearch:
         pg_count = soup.find('div', {'id': 'searchCountPages'}).getText().strip()
         total_results = re.search(r'of (.*) jobs', pg_count).group(1)
         total_results = total_results.replace(',', '')
+        current_results = 0  # For progress tracking
 
         # If the number of total results is greater than the max_results desired, calculate pg loops using max_results
         if max_results < int(total_results):
-            pg_loops = range(0, int(max_results / 10))
+            total_results = max_results
+            pg_loops = range(0, int(int(total_results) / 10))
         else:
             pg_loops = range(0, int(int(total_results) / 10))
 
@@ -83,6 +85,13 @@ class JobSearch:
             # Further parse and seperate relevant information pertaining to job and add those features to
             # a dict (consider these rows) and append each job to the final result_lst
             for data in data_to_parse:
+
+                progress = int(current_results / int(total_results) * 100)
+
+                if progress < 100:
+                    print(str(progress) + '%')  # Current Progress
+                elif progress >= 100:
+                    print('100%. Wrapping up..')  # print 100 if current progress above 100
 
                 result_dict = {}
 
@@ -125,6 +134,8 @@ class JobSearch:
                 result_dict['url'] = sub_url
 
                 result_lst.append(result_dict)
+
+                current_results += 1
 
             current_pg += 10
 
@@ -178,18 +189,18 @@ class JobSearch:
     #         all_jobs = self.output_df['job_title']
     #         filtered_jobs = self.filtered_df['job_title']
 
-            # 1. Get common text occurences from filtered posting that relate to skills and responsibilities
-            # 2. Aggregate common text into a list ['analytical', 'Excel', 'strategic recommendations']
-            # 3. Compare this list to the overall job posting and assign compatability score to each posting
-            # 4. If comp. score is greater than 90%, return the title without the level in it (ex. strategy manager)
-            # becomes strategy
+    # 1. Get common text occurences from filtered posting that relate to skills and responsibilities
+    # 2. Aggregate common text into a list ['analytical', 'Excel', 'strategic recommendations']
+    # 3. Compare this list to the overall job posting and assign compatability score to each posting
+    # 4. If comp. score is greater than 90%, return the title without the level in it (ex. strategy manager)
+    # becomes strategy
 
-            # years = self.years_experience
+    # years = self.years_experience
 
-        #
-        # elif basis == 'l':
-        #     print('Finding similar locations.')
-        #     location = self.input_location
+    #
+    # elif basis == 'l':
+    #     print('Finding similar locations.')
+    #     location = self.input_location
 
     # def compare_compatability(self, compare_to: str or pd.DataFrame, compare_from: str or pd.DataFrame):
     # if type(compare_from) == str:
@@ -201,11 +212,11 @@ class JobSearch:
     # compatibilty score = (text similarity) / (years required / years held)
 
 
-# if __name__ == '__main__':
-#     js = JobSearch(title='strategy consultant', location='Washington DC', time_type='fulltime')
-#     results = js.jobs(max_results=500)
-#     filtered = results.filter(minimum_experience=1)
-#     results.export(dataset='a')
-#     filtered.export(dataset='f')
-#
-#     print('Search complete')
+if __name__ == '__main__':
+    js = JobSearch(title='strategy consultant', location='Washington DC', time_type='fulltime', minimum_experience=1)
+    results = js.jobs(max_results=10)
+    filtered = results.filter()
+    results.export(dataset='a')
+    filtered.export(dataset='f')
+
+    print('Search complete')
